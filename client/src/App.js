@@ -11,6 +11,7 @@ class App extends Component {
       <Router>
         <div>
           <NavBar />
+          
           <Switch>
             <Route exact path="/" component={HomePage} />
           </Switch>

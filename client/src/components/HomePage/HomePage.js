@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HomeBody from './HomeBody'
 
 class HomePage extends Component {
 
@@ -14,13 +15,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <div>This div
-          <div>nested div</div>
-        </div>
-        <br/>
-        <br/>
-        <hr/>
-        <div>This div is not part of the group className="lonely div"</div>
+        <HomeBody/>
 
       </div>
     );
