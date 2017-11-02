@@ -5,7 +5,8 @@ const SplashImg = styled.div`
   width: 100%;
 
   img {
-    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
 `;
 
@@ -14,7 +15,7 @@ class HomeBody extends Component {
     return (
       <section>
         <SplashImg>
-          <img src="http://www.punakaikibeachhostel.co.nz/wp-content/themes/punakaiki-responsive/images/header05.jpg" alt=""/>
+          <img src="https://andrescavelier.files.wordpress.com/2008/11/dsc_0007.jpg" />
         </SplashImg>
       </section>
     );

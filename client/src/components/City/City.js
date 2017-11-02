@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PostList from '../Posts/PostList';
+import styled from 'styled-components';
+
+const CityPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+`
 
 class City extends Component {
 
@@ -35,13 +43,13 @@ class City extends Component {
 
   render() {
     return (
-      <div>
+      <CityPage>
         <img src={this.state.city.photo_url} alt={this.state.city.name} />
         <PostList
           posts={this.state.posts}
           newPost={this.newPost}
         />
-      </div>
+      </CityPage>
     );
   }
 }

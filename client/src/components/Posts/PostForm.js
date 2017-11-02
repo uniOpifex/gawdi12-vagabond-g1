@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class PostForm extends Component {
-  state={
+  state = {
     post: {}
   }
 
@@ -10,22 +10,24 @@ class PostForm extends Component {
     this.props.newPost(this.state.post);
   }
 
-  handleChange = (event) =>{
+  handleChange = (event) => {
     let field = event.target.name;
     let value = event.target.value;
-    let updatedPost = {...this.state.post};
+    let updatedPost = { ...this.state.post };
     updatedPost[field] = value;
-    this.setState({post: updatedPost});
+    this.setState({ post: updatedPost });
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="user">User</label>
-        <input onChange={this.handleChange} type="text" name="user"/>
-        <label htmlFor="content">Post:</label>
-        <textarea onChange={this.handleChange} name="content" cols="30" rows="10"></textarea>
-        <input type="submit"/>
+        <label htmlFor="user">Title: </label>
+        <input onChange={this.handleChange} type="text" name="user" />
+        <br />
+        <label htmlFor="content">Post: </label>
+        <textarea onChange={this.handleChange} name="content" cols="20" rows="5"></textarea>
+        <br />
+        <input type="submit" />
       </form>
     );
   }

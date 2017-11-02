@@ -2,6 +2,45 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  img{
+    background-position: cover;
+  }
+`
+
+const PostContainer = styled.div`
+  background-color: rgba(135, 207, 255, 0.6);
+  width: 80%;
+  margin: 0 auto;
+  margin-top: -25%;
+  border-radius: 10px 30px;
+  border: 5px solid rgba(5,5,5,.1);
+  padding: 10px;
+
+  h1{
+    text-align: left;
+  }
+`
+
+const Content = styled.div`
+  background-color: rgba(135, 207, 255, 0.6);
+  border-radius: 10px 30px;
+  border: 5px solid rgba(5,5,5,.1);
+  display: flex;
+  flex-direction: column;
+  button{
+    width: 200px;
+    margin: 0 auto;
+  }
+`
+
 
 class Post extends Component {
 
@@ -68,34 +107,37 @@ class Post extends Component {
     }
 
     return (
-      <div>
+      <PageContainer>
         <img src={this.state.city.photo_url} alt="" />
-        <h1>{this.state.post.user}</h1>
-        {
-          this.state.edit ?
-            <form onBlur={this.updatePost}>
-              <textarea name="content" onChange={this.handleChange} value={this.state.post.content} cols="30" rows="10"></textarea>
-            </form>
-            :
-            <p>{this.state.post.content}</p>
-        }
-        <button onClick={this.toggleEdit}>Toggle Edit</button>
-        <br />
-        {
-          this.state.deletePopupShowing ?
-            <form onSubmit={this.deletePost}>
-              <label htmlFor="delete">Are you absolutely Sure? <small>This cannot be undone</small></label>
-              <br />
-              <input name="delete" type="submit" value="Yes, just delete the dang post" />
-              <button onClick={this.toggleDeletePopup}>Acktually, nevermind. I like this post</button>
-            </form>
-            :
-            <button onClick={this.toggleDeletePopup}>Delete Post</button>
-        }
-        <br />
-        <Link to={`/cities/${this.state.city.id}`}>Back</Link>
-        <br /><br /><br /><br />
-      </div>
+        <PostContainer>
+          <h1>{this.state.post.user}</h1>
+          <Content>
+            {
+              this.state.edit ?
+                <form onBlur={this.updatePost}>
+                  <textarea name="content" onChange={this.handleChange} value={this.state.post.content} cols="30" rows="10"></textarea>
+                </form>
+                :
+                <p>{this.state.post.content}</p>
+            }
+            <button onClick={this.toggleEdit}>Toggle Edit</button>
+            <br />
+            {
+              this.state.deletePopupShowing ?
+                <form onSubmit={this.deletePost}>
+                  <label htmlFor="delete">Are you absolutely Sure? <small>This cannot be undone</small></label>
+                  <br />
+                  <input name="delete" type="submit" value="Yes, just delete the dang post" />
+                  <button onClick={this.toggleDeletePopup}>Actually, nevermind. I like this post</button>
+                </form>
+                :
+                <button onClick={this.toggleDeletePopup}>Delete Post</button>
+            }
+          </Content>
+          <br />
+          <Link to={`/cities/${this.state.city.id}`}>Back</Link>
+        </PostContainer>
+      </PageContainer>
     );
   }
 }
