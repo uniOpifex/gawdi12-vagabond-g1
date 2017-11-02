@@ -1,0 +1,9 @@
+
+
+
+
+rails g model City name photo_url
+rails g model Post content:text city:references user
+
+rails g model Artist name photo_url nationality
+rails g model Song title album preview_url artist:references
