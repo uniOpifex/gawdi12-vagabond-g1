@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from 'axios';
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage/HomePage";
 import CitiesList from './components/City/CitiesList';
 import City from './components/City/City';
+import Post from './components/Posts/Post';
 
 class App extends Component {
 
@@ -35,6 +34,7 @@ class App extends Component {
           <Switch>
             {/* why does changing order affect which component renders? */}
             <Route exact path="/" component={HomePage} />
+            <Route path='/cities/:cityId/:postId' component={Post}/>
             <Route path='/cities/:cityId' component={City}/> 
             <Route path='/cities' render={CitiesListComponent}/>
           </Switch>

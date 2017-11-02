@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PostList from '../Posts/PostList';
 
 class City extends Component {
 
@@ -24,6 +25,7 @@ class City extends Component {
     return (
       <div>
         <img src={this.state.city.photo_url} alt={this.state.city.name}/>
+        <PostList posts={this.state.posts}/>
       </div>
     );
   }
