@@ -4,15 +4,15 @@ import PostForm from './PostForm';
 
 class PostList extends Component {
 
-  state={
+  state = {
     form: false
   }
 
-  toggleForm = () =>{
-    this.setState({form: !this.state.form})
+  toggleForm = () => {
+    this.setState({ form: !this.state.form })
   }
 
-  newPost = (post) =>{
+  newPost = (post) => {
     this.props.newPost(post);
   }
 
@@ -21,7 +21,7 @@ class PostList extends Component {
       <div>
         <h1>Posts</h1>
         {
-          this.props.posts.map((post, index)=>{
+          this.props.posts.map((post, index) => {
             return (
               <div key={index}>
                 <Link to={`/cities/${post.city_id}/${post.id}`}>{post.user}</Link>
@@ -32,7 +32,7 @@ class PostList extends Component {
         }
         <button onClick={this.toggleForm}>New Post</button>
         {
-          this.state.form ? <PostForm newPost={this.newPost}/> : null
+          this.state.form ? <PostForm newPost={this.newPost} /> : null
         }
       </div>
     );
