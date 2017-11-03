@@ -32,7 +32,26 @@ const PostContainer = styled.div`
 
 class PostList extends Component {
   state = {
-    form: false
+    form: false,
+    posts: [],
+    currentPosts: [],
+    currentIndex: 0,
+    lastPage: false,
+    firstPage: true
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    await this.setState({ posts: nextProps.posts })
+    let currentPosts;
+    if (this.state.posts.length > 10) {
+      currentPosts = this.state.posts.slice(0, 10);
+      await this.setState({ currentIndex: 10 });
+      await this.setState({ lastPage: false })
+    } else {
+      currentPosts = this.state.posts;
+      await this.setState({ lastPage: true });
+    }
+    await this.setState({ currentPosts: currentPosts })
   }
 
   toggleForm = () => {
@@ -44,23 +63,73 @@ class PostList extends Component {
     this.toggleForm()
   }
 
+  nextPage = async (event) => {
+    let endIndex;
+    if (this.state.posts.length - this.state.currentIndex > 10) {
+      endIndex = this.state.currentIndex + 10;
+    } else {
+      endIndex = this.state.posts.length;
+      this.setState({ lastPage: true })
+    }
+    let nextPosts = this.state.posts.slice(this.state.currentIndex, endIndex)
+    await this.setState({ currentPosts: nextPosts });
+    await this.setState({ currentIndex: endIndex });
+    await this.setState({ firstPage: false })
+  }
+
+  prevPage = async (event) => {
+    let startIndex;
+    let nextIndex;
+    if (this.state.currentIndex % 10 === 0) {
+      startIndex = this.state.currentIndex - 10;
+      nextIndex = startIndex;
+    } else {
+      startIndex = this.state.currentIndex - (10 + this.state.currentIndex % 10)
+      nextIndex = this.state.currentIndex - (this.state.currentIndex % 10)
+    }
+    let prevPosts = this.state.posts.slice(startIndex, startIndex + 10);
+
+    await this.setState({ currentPosts: prevPosts });
+    if (startIndex === 0) {
+      await this.setState({ firstPage: true });
+    }
+    await this.setState({ currentIndex: nextIndex });
+    this.setState({ lastPage: false });
+  }
+
   render() {
     return (
       <ListContainer>
         <h1>Posts</h1>
         {
-          this.props.posts.map((post, index) => {
-            return (
-              <PostContainer key={index}>
-                <Link to={`/cities/${post.city_id}/${post.id}`}>{post.user}</Link>
-                <p>{post.content}</p>
-              </PostContainer>
-            )
-          })
+          this.state.currentPosts ?
+            this.state.currentPosts.map((post, index) => {
+              return (
+                <PostContainer key={index}>
+                  <Link to={`/cities/${post.city_id}/${post.id}`}>{post.user}</Link>
+                  <p>{post.content}</p>
+                </PostContainer>
+              )
+            })
+            :
+            null
+        }
+        {
+          this.state.firstPage ?
+            <button disabled>Previous Page</button>
+            :
+            <button onClick={this.prevPage}>Previous Page</button>
+
         }
         <button onClick={this.toggleForm}>New Post</button>
         {
           this.state.form ? <PostForm newPost={this.newPost} /> : null
+        }
+        {
+          this.state.lastPage ?
+            <button disabled>Next Page</button>
+            :
+            <button onClick={this.nextPage}>Next Page</button>
         }
       </ListContainer>
     );

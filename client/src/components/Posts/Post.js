@@ -67,7 +67,7 @@ class Post extends Component {
   deletePost = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.delete(`/api/cities/${this.state.city.id}/posts/${this.state.post.id}`);
+      await axios.delete(`/api/cities/${this.state.city.id}/posts/${this.state.post.id}`);
       window.location = `/cities/${this.state.city.id}`
       // await this.setState({ redirect: true }) //WHY does this break everything?!
     } catch (err) { console.log(err) }
@@ -93,7 +93,7 @@ class Post extends Component {
     this.setState({ edit: !this.state.edit })
   }
 
-  
+
 
   handleChange = (event) => {
     let changedPost = this.state.post;

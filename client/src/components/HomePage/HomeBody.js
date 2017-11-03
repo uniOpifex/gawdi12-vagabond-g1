@@ -15,7 +15,7 @@ class HomeBody extends Component {
     return (
       <section>
         <SplashImg>
-          <img src="https://andrescavelier.files.wordpress.com/2008/11/dsc_0007.jpg" />
+          <img src="https://andrescavelier.files.wordpress.com/2008/11/dsc_0007.jpg" alt="" />
         </SplashImg>
       </section>
     );

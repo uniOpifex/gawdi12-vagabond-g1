@@ -28,8 +28,9 @@ class City extends Component {
     try {
       await axios.post(`/api/cities/${this.state.city.id}/posts`, post);
       this.updatePosts();
-    } catch (err) { console.log(err) 
-      alert (`Some error occurred`)   
+    } catch (err) {
+      console.log(err)
+      alert(`Some error occurred`)
     }
   }
 
@@ -50,6 +51,7 @@ class City extends Component {
         <PostList
           posts={this.state.posts}
           newPost={this.newPost}
+          postsPerPage={10}
         />
       </CityPage>
     );
