@@ -5,12 +5,11 @@ import styled from 'styled-components';
 
 const ListContainer = styled.div`
   background-color: rgba(135, 207, 255, 0.6);
-  width: 80%;
+  width: 80vw;
   margin: 0 auto;
-  margin-top: -600px;
+  position: relative;
   border-radius: 10px 30px;
   border: 5px solid rgba(5,5,5,.1);
-  padding: 50px;
 `
 
 const PostContainer = styled.div`
@@ -20,8 +19,7 @@ const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
- 
-
+  margin: 10px 30px;
   a{
     color: black;
     text-align: left;
