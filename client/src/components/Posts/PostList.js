@@ -7,9 +7,10 @@ const ListContainer = styled.div`
   background-color: rgba(135, 207, 255, 0.6);
   width: 80%;
   margin: 0 auto;
-  margin-top: -25%;
+  margin-top: -525px;
   border-radius: 10px 30px;
   border: 5px solid rgba(5,5,5,.1);
+  padding: 50px;
 `
 
 const PostContainer = styled.div`
@@ -19,6 +20,7 @@ const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
+ 
 
   a{
     color: black;
