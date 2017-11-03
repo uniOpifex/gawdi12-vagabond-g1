@@ -6,6 +6,16 @@ import HomePage from "./components/HomePage/HomePage";
 import CitiesList from './components/City/CitiesList';
 import City from './components/City/City';
 import Post from './components/Posts/Post';
+import styled from 'styled-components';
+
+
+const Footer = styled.div`
+position: absolute;
+bottom: 10%;
+left: 0%;
+color: white;
+`
+
 
 class App extends Component {
 
@@ -37,6 +47,10 @@ class App extends Component {
             <Route path='/cities/:cityId' component={City} />
             <Route path='/cities' render={CitiesListComponent} />
           </Switch>
+          <Footer>
+          
+
+          </Footer>
         </div>
       </Router>
     );

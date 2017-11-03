@@ -5,12 +5,12 @@ import styled from "styled-components";
 const NavWrap = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: center;
   align-items: flex-end;
-  background-color: lightgreen;
   font-size: 1em;
   color: black;
+  width: 80%;
 
   h1 {
     margin-bottom: 0px;
@@ -20,6 +20,12 @@ const NavWrap = styled.div`
     flex-direction: column;
   }
 `;
+
+const NavLength = styled.div `
+background-color: lightgreen;
+display: flex;
+justify-content: center;
+`
 
 const NavLinks = styled.div`
   display: flex;
@@ -44,6 +50,7 @@ const Item = styled.div`
 
 const NavBar = () => {
   return (
+    <NavLength>
     <NavWrap>
       
         <h1>Project Vagabond</h1>
@@ -61,6 +68,7 @@ const NavBar = () => {
         </Item>
       </NavLinks>
     </NavWrap>
+    </NavLength>
   );
 };
 
