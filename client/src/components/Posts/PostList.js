@@ -8,7 +8,7 @@ const ListContainer = styled.div`
   width: 80vw;
   margin: 0 auto;
   position: relative;
-  border-radius: 10px 30px;
+  border-radius: 10px;
   border: 5px solid rgba(5,5,5,.1);
 `
 
@@ -28,6 +28,11 @@ const PostContainer = styled.div`
   a:hover{
     color: blue;
   }
+`
+
+const PostHead = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 class PostList extends Component {
@@ -106,7 +111,10 @@ class PostList extends Component {
             this.state.currentPosts.map((post, index) => {
               return (
                 <PostContainer key={index}>
-                  <Link to={`/cities/${post.city_id}/${post.id}`}>{post.user}</Link>
+                  <PostHead>
+                    <Link to={`/cities/${post.city_id}/${post.id}`}>{post.user}</Link>
+                    Posted: {post.created_at.slice(0, 10).split('-').reverse().join('/')}
+                  </PostHead>
                   <p>{post.content}</p>
                 </PostContainer>
               )

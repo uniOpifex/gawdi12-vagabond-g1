@@ -17,12 +17,12 @@ const PageContainer = styled.div`
 
 const PostContainer = styled.div`
   background-color: rgba(135, 207, 255, 0.6);
-  width: 80%;
-  margin: 0 auto;
-  margin-top: -25%;
   border-radius: 10px 30px;
   border: 5px solid rgba(5,5,5,.1);
+  display: flex;
+  flex-direction: column;
   padding: 10px;
+  margin: 10px 30px;
 
   h1{
     text-align: left;
@@ -39,6 +39,11 @@ const Content = styled.div`
     width: 200px;
     margin: 0 auto;
   }
+`
+
+const PostHead = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 
@@ -112,7 +117,16 @@ class Post extends Component {
       <PageContainer>
         <img src={this.state.city.photo_url} alt="" />
         <PostContainer>
-          <h1>{this.state.post.user}</h1>
+          <PostHead>
+            <h1>{this.state.post.user}</h1>
+            Posted:
+            {
+              this.state.post.created_at ?
+                this.state.post.created_at.slice(0, 10).split('-').reverse().join('/')
+                :
+                null
+            }
+          </PostHead>
           <Content>
             {
               this.state.edit ?
@@ -129,7 +143,7 @@ class Post extends Component {
                 <form onSubmit={this.deletePost}>
                   <label htmlFor="delete">Are you absolutely Sure? <small>This cannot be undone</small></label>
                   <br />
-                  <input name="delete" type="submit" value="Yes, just delete the dang post" />
+                  <input name="delete" type="submit" value="Yes, just delete the post" />
                   <button onClick={this.toggleDeletePopup}>Actually, nevermind. I like this post</button>
                 </form>
                 :
