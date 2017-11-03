@@ -93,6 +93,8 @@ class Post extends Component {
     this.setState({ edit: !this.state.edit })
   }
 
+  
+
   handleChange = (event) => {
     let changedPost = this.state.post;
     const newContent = event.target.value;

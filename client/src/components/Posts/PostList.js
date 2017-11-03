@@ -41,6 +41,7 @@ class PostList extends Component {
 
   newPost = (post) => {
     this.props.newPost(post);
+    this.toggleForm()
   }
 
   render() {

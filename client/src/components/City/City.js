@@ -28,7 +28,9 @@ class City extends Component {
     try {
       await axios.post(`/api/cities/${this.state.city.id}/posts`, post);
       this.updatePosts();
-    } catch (err) { console.log(err) }
+    } catch (err) { console.log(err) 
+      alert (`Some error occurred`)   
+    }
   }
 
   updatePosts = async () => {

@@ -22,10 +22,10 @@ class PostForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="user">Title: </label>
-        <input onChange={this.handleChange} type="text" name="user" />
+        <input onChange={this.handleChange} type="text" name="user"  required minlength="1" maxlength="200"/>
         <br />
         <label htmlFor="content">Post: </label>
-        <textarea onChange={this.handleChange} name="content" cols="20" rows="5"></textarea>
+        <textarea onChange={this.handleChange} name="content" cols="20" rows="5" required minlength="5" maxlength="2000"></textarea>
         <br />
         <input type="submit" />
       </form>
